@@ -8,7 +8,7 @@ function init(){
 inquirer.prompt({
 type: "list",
 name : "ChosingOptions",
-message: "=========================================================\n  *** Welcome to Employee Traker app.         ****\n  *** What would you like to do today?               *** " ,
+message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  ===============================================" ,
 
 choices: ['Add', 'remove', 'view', 'quit']
 }).then(function(selectedAnswer){
@@ -16,7 +16,8 @@ choices: ['Add', 'remove', 'view', 'quit']
         inquirer.prompt({
             type: 'list',
             name: 'ChosingOptions',
-            message: ""
+            message: "sdfgsdfg",
+            choices:['asdf','asdf','asdf','sdaf']
         });
 
     };
