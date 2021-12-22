@@ -1,12 +1,21 @@
-INSERT INTO  departments (id, username)
+USE employees_db;
+INSERT INTO  departments (name)
 VALUES
-       (1, "DOG"),
-       (2, "SDKJFHKJ"),
-       (3, "ASD;LKFASDLK"), 
+       ( "DOG"),
+       ( "cat"),
+       ( "fly"), 
 
-INSERT INTO roles (id, title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES
-        (1, )
-        ()
-        ()
-INSERT INTO 
+        ("manager", 2000.00, 2 ),
+        ("intern", 100.00, 6)
+        ("ingeneer", 300.00, 1 );
+
+INSERT INTO employees (id, first_name, last_name, role_id,)
+        (1, "Felix", "Dog"2),
+        (2, "Daniela", "cat"),
+        (3, "Chrity", "bird");
+
+UPDATE employees
+SET   manager_id = 1
+WHERE id IN (2,3)
