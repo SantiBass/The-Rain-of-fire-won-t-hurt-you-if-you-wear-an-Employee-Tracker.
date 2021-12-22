@@ -88,7 +88,73 @@ function init() {
             })
 
 
-        };
+        }else if (selectedAnswer.ChoosingOptions === "Add departments") {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'nameOfDepartment',
+                    message: "Give a name to the department you want to add",
+
+                },
+                {
+                    type: 'input',
+                    name: 'idOfDepartment',
+                    message: "Give an ID to the department you want to add",
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "You added a deparment successfuly \n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu'] 
+                }
+            ])
+                // add department here prompted to enter the name of the department and that department is added to the database
+            .then(function (selectedAnswer) {
+                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                    init();
+
+
+                };
+            })
+
+
+        }else if(selectedAnswer.ChoosingOptions === "Add a role") {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'employeeName',
+                    message: "What is your name?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'employeeSalary',
+                    message: "What is your salary amount?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'nameOfDepartment',
+                    message: "What is your department?",
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "You added a  new role successfuly \n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu'] 
+                }
+            ])
+                // add role here enter the name, salary, and department for the role and that role is added to the database
+            .then(function (selectedAnswer) {
+                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                    init();
+
+
+                };
+            })
+
+
+        }
 
 
 
@@ -110,8 +176,8 @@ init();
 // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to *
 // WHEN I choose to add a department *
 // THEN I am prompted to enter the name of the department and that department is added to the database *
-// WHEN I choose to add a role
-// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
+// WHEN I choose to add a role *
+// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database*
 // WHEN I choose to add an employee
 // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 // WHEN I choose to update an employee role
