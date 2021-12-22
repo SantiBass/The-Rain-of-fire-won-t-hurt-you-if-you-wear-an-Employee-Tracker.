@@ -216,7 +216,7 @@ function init() {
             console.log("Have a wonderful day. Bye!!!");
         };
       })
-}
+    }
 
 init();
 
