@@ -40,8 +40,8 @@ choices: ['View all departments','View all roles', 'View all employees', 'Add de
            init();
 
             
-        }
-    })
+        };
+      });
 
  } else if(selectedAnswer.ChoosingOptions === "View all employees"){
     inquirer.prompt({
@@ -55,33 +55,40 @@ choices: ['View all departments','View all roles', 'View all employees', 'Add de
        init();
 
         
-    }
-})
+    };
+   });
+  }else if(selectedAnswer.ChoosingOptions === "Add departments"){
+    inquirer.prompt([
+        {
+        type: 'input',
+        name: 'nameOfDepartment',
+        message: "Give a name to the department you want to add",
+        
+        },
+        {
+        type: 'input',
+        name: 'idOfDepartment',
+        message: "Give an ID to the department you want to add",
+        }
+        // add department here
+    ]).then(function(selectedAnswer){
+        if(selectedAnswer.ChoosingOptions === "Go to the main menu"){
+            init();
+     
+             
+         };
+    })
+    
 
- }
+  };
 
     
 
-})
+ })
 }
 
 init();
 
-// inquirer.prompt([
-//     {
-//     type: 'input',
-//     name: 'nameOfDepartment',
-//     message: "Give a name to the department you want to add",
-    
-// },
-// {
-//     type: 'input',
-//     name: 'idOfDepartment',
-//     message: "Give an ID to the department you want to add",
-// }// add department here
-// ]).then(function(selectedAnswer){
-//     init();
-// })
 
 
 // GIVEN a command-line application that accepts user input
