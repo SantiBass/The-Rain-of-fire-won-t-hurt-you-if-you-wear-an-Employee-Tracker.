@@ -1,9 +1,10 @@
-SELECT * FROM departments
+SELECT * FROM departments;
 
--- selecting data from from all roles.
-SELECT  r.id, title, salary, d.department_name AS department
-FROM roles role_id
-JOIN departments  ON  d.department_id = d.id;
+-- -- selecting data from from all roles.
+SELECT  id, title, salary, department_name AS department FROM departments roles.role_id;
+-- JOIN departments  ON  d.department_id = d.id;
 
-SELECT employee.id, first_name,
-FROM employees
+-- -- SELECT
+-- FROM
+-- SELECT employee.id, first_name,
+-- FROM employee
