@@ -1,18 +1,18 @@
 USE employees_db;
-INSERT INTO  departments (dep_name)
-VALUES ("DOG"),
-       ("cat"),
-       ('fly');
+INSERT INTO  departments (id, dep_name)
+VALUES (1, "DOG"),
+       (2, "cat"),
+       (3, "fly");
 
-INSERT INTO roles (title, salary, department_id)
-VALUES ("manager", 2000.00, 1);
-         ("intern", 100.00, 6),
-         ("ingeneer", 300.00, 1 );
+INSERT INTO roles (id, title, salary, department_id)
+VALUES   (10, "manager", 2000.00, 1),
+         (20, "intern", 100.00, 2),
+         (30, "ingeneer", 300.00, 3);
 
-INSERT INTO employee (id, first_name, last_name, role_id)
-VALUES  (1, "Felix", "hi",1),
-        (2, "Daniela", "low", 1),
-        (3, "Chrity", "bird", 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES  (100, "Felix", "hi",10,10),
+        (200, "Daniela", "low",20,10),
+        (300, "Chrity", "bird",30);
 
 UPDATE employee
 SET   manager_id = 1
