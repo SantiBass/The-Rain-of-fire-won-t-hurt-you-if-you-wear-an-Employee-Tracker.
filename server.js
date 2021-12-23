@@ -1,9 +1,16 @@
 const inquirer = require('inquirer');
-const { add } = require('lodash');
+
 const PORT = process.env.PORT || 3005;
 const mysql = require('mysql');
-require("console.table");
-
+const consoleTable = require('console.table');
+const connetion = mysql.createConnection({
+    host: "localhost",
+    port: 3005,
+    password:"password",
+    user:"root",
+    database: "employees_db",
+});
+console.log(`Connected to the employees database.`);
 function init() {
     inquirer.prompt({
         type: "list",
