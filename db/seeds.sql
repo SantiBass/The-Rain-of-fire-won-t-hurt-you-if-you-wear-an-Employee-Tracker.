@@ -1,5 +1,5 @@
 USE employees_db;
-INSERT INTO  departments (id, dep_name)
+INSERT INTO  departments (id, department_name)
 VALUES (1, "Marketing"),
        (2, "Finance"),
        (3, "Design"),
@@ -23,15 +23,9 @@ VALUES  (100, "Santiago", "Ibarra",10, 100),
         (400, "Patricia", "Ryan", 40, 400),
         (500, "Klaus", "Mikelsen", 70, 500),
         (600, "Divina", "De la Cuadra", 20, 600),
-        (700, "sdfgfsdf", "dfadsfads", 50, 700);
+        (700, "Mia", "Xu", 50, 700);
 
 UPDATE employee
 SET   manager_id = 1
 WHERE id IN (2,3);
 
--- (20, "Intern", 30.000.00,2),
---          (30, "Ingeneer", 80.000.00,3),
---          (40, "Supervisor", 60.000.00, 4),
---          (50, "Sales Assossiate", 40.000.00, 5),
---          (60, "Web Designer", 70.000.00, 3),
---          (70, "Intern",30.000.00, 7);

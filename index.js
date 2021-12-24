@@ -16,28 +16,42 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add departments', 'Add a role', 'Add an employee', 'Update  Manager', 'Delete', 'Quit']
+        choices: ['View all departments', 'View all roles', 'View all employees', 'Add department', 'Add a role', 'Add an employee', 'Update  Manager', 'Delete', 'Quit']
     }).then(function (selectedAnswer) {
         if (selectedAnswer.ChoosingOptions === "View all departments") {
 
-
+            db.connect(function (err) {
+                if (err) throw err;
+                db.query('select * from departments', function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    console.table(result);
+                });
+            })
             inquirer.prompt({
 
+                
                 // add table HERE for departments BY NAME AND ID
                 type: 'list',
                 name: 'ChoosingOptions',
                 message: "Here are all departments \n  Press enter to go to the main menu plase",
                 choices: ['Go to the main menu']
-
-            }).then(function (selectedAnswer) {
+            } ).then(function (selectedAnswer) {
+               
                 if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
                     init();
-
-
                 }
             })
 
         } else if (selectedAnswer.ChoosingOptions === "View all roles") {
+            db.connect(function (err) {
+                if (err) throw err;
+                db.query('select * from roles', function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    console.table(result);
+                });
+            })
 
             inquirer.prompt({
                 // add table HERE for all roles presented with the job title, role id, the department that role belongs to, and the salary for that role
@@ -49,14 +63,21 @@ function init() {
                 if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
 
                     init();
-
-
                 };
             });
 
         } else if (selectedAnswer.ChoosingOptions === "View all employees") {
+            // add table HERE for all employees presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+            db.connect(function (err) {
+                if (err) throw err;
+                db.query('select * from employee', function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    console.table(result);
+                });
+            })
             inquirer.prompt({
-                // add table HERE for all employees presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+                
                 type: 'list',
                 name: 'ChoosingOptions',
                 message: "Here are all the employees \n  Press enter to go to the main menu plase",
@@ -66,7 +87,7 @@ function init() {
                     init();
                 };
             });
-        } else if (selectedAnswer.ChoosingOptions === "Add departments") {
+        } else if (selectedAnswer.ChoosingOptions === "Add department") {
             inquirer.prompt([
                 {
                     type: 'input',
@@ -88,6 +109,14 @@ function init() {
             ])
                 // add department here prompted to enter the name of the department and that department is added to the database
                 .then(function (selectedAnswer) {
+                    db.connect(function (err) {
+                        if (err) throw err;
+                        db.query('INSERT INTO departments SET ?',{department_name: selectedAnswer.nameOfDepartment}, function (err, result) {
+                            if (err) throw err;
+                            console.log("\n");
+                            // console.table(result);
+                        });
+                    })
                     if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
                         init();
 
@@ -273,13 +302,15 @@ function init() {
                         init();
                     };
                 })
-        }
-        
-        
-        
-        else if (selectedAnswer.ChoosingOptions === "Quit") {
+        } 
+        else if (selectedAnswer.ChoosingOptions == "Quit") {
+           
+            console.log("Press ctrl + C key to exit");
             console.log("Have a wonderful day. Bye!!!");
         };
+        
+        
+       
     })
 }
 
