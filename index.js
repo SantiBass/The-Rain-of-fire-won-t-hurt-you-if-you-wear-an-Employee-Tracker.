@@ -16,7 +16,7 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add departments', 'Add a role', 'Add an employee', 'Update  employee role', 'Delete', 'Quit']
+        choices: ['View all departments', 'View all roles', 'View all employees', 'Add departments', 'Add a role', 'Add an employee', 'Update  Manager', 'Delete', 'Quit']
     }).then(function (selectedAnswer) {
         if (selectedAnswer.ChoosingOptions === "View all departments") {
 
@@ -98,6 +98,7 @@ function init() {
 
         } else if (selectedAnswer.ChoosingOptions === "Add a role") {
             inquirer.prompt([
+                //  ================   adding role =============
 
                 {
                     type: 'input',
@@ -131,29 +132,42 @@ function init() {
                 };
             });
         } else if (selectedAnswer.ChoosingOptions === "Add an employee") {
+            //  =============== adding employee ==============
             inquirer.prompt([
                 {
                     type: 'input',
                     name: 'employeeName',
-                    message: "What is your name?",
+                    message: "What is the name of the employee you want to add?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'employeeLastName',
+                    message: "What is the last name of the employee you want to add?",
 
                 },
                 {
                     type: 'input',
                     name: 'employeeId',
-                    message: "What is your ID?",
+                    message: "What is the ID of the employee you want to add?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'employeeRole',
+                    message: "What is the role of the employee you want to add?",
 
                 },
 
                 {
                     type: 'input',
                     name: 'nameOfDepartment',
-                    message: "What is your department?",
+                    message: "What is the department in which the employee is being added?",
                 },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
-                    message: "You added a  new role successfuly \n  Press enter to go to the main menu plase",
+                    message: "You added a new employee successfuly \n  Press enter to go to the main menu plase",
                     choices: ['Go to the main menu']
                 }
             ])
@@ -165,26 +179,39 @@ function init() {
 
                     };
                 })
-        } else if (selectedAnswer.ChoosingOptions === "Update  employee role") {
-            //  show table of employees' names
-            // 
+        } else if (selectedAnswer.ChoosingOptions === "Update  manager") {
+           
+            //===========     update managers ================
+             
             inquirer.prompt([
                 {
                     type: 'input',
-                    name: 'employeeId',
-                    message: "What is your employee ID?",
+                    name: 'managerName',
+                    message: "What is the name of the manager being updated?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'employeeLastName',
+                    message: "What is the last name of the employee you want to add?",
+
+                },
+                {
+                    type: 'input',
+                    name: 'idOfTheManager',
+                    message: "What is the ID of the manager being updated?",
 
                 },
                 {
                     type: 'input',
                     name: 'employeeSalary',
-                    message: "What is your salary amount?",
+                    message: "What is your salary amountof the manager being updated?",
 
                 },
                 {
                     type: 'input',
                     name: 'nameOfDepartment',
-                    message: "What is your department?",
+                    message: "What is your the department of the manager being updated?",
                 },
                 {
                     type: 'list',
@@ -199,6 +226,30 @@ function init() {
                     init();
                 };
             })
+        } else if (selectedAnswer.ChoosingOptions === "Delete manager") {
+            //  show table of employees' names
+            // ============      deleting roles, departments, employees    ==========
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'deletingOption',
+                    message: "What would you like to delete?",
+                    choices: ['Department', 'role', 'employee']
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "Your deletion prosess was successfuly done!\n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu']
+                }
+
+            ])
+                // update role here select an employee to update and their new role and this information is updated in the database
+                .then(function (selectedAnswer) {
+                    if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                        init();
+                    };
+                })
         } else if (selectedAnswer.ChoosingOptions === "Delete") {
             //  show table of employees' names
             inquirer.prompt([
@@ -222,7 +273,11 @@ function init() {
                         init();
                     };
                 })
-        } else if (selectedAnswer.ChoosingOptions === "Quit") {
+        }
+        
+        
+        
+        else if (selectedAnswer.ChoosingOptions === "Quit") {
             console.log("Have a wonderful day. Bye!!!");
         };
     })
