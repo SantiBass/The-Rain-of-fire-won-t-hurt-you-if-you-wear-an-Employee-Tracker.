@@ -95,11 +95,11 @@ function init() {
                     message: "Give a name to the department you want to add",
 
                 },
-                {
-                    type: 'input',
-                    name: 'idOfDepartment',
-                    message: "Give an ID to the department you want to add",
-                },
+                // {
+                //     type: 'input',
+                //     name: 'idOfDepartment',
+                //     message: "Give an ID to the department you want to add",
+                // },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
@@ -111,10 +111,12 @@ function init() {
                 .then(function (selectedAnswer) {
                     db.connect(function (err) {
                         if (err) throw err;
-                        db.query('INSERT INTO departments SET ?',{department_name: selectedAnswer.nameOfDepartment}, function (err, result) {
+                        db.query('INSERT INTO departments SET ?',{department_name: selectedAnswer.nameOfDepartment}, 
+                        function (err, result) {
                             if (err) throw err;
                             console.log("\n");
                             // console.table(result);
+                            // 
                         });
                     })
                     if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
@@ -315,6 +317,18 @@ function init() {
 }
 
 init();
+
+
+            // db.connect(function (err) {
+            //     if (err) throw err;
+            //     db.query('DELETE FROM departments WHERE ?',{department_name: selectedAnswer.nameOfDepartment}, 
+            //     function (err, result) {
+            //         if (err) throw err;
+            //         console.log("\n");
+            //         // console.table(result);
+            //         // 
+            //     });
+            // })
 
 // db.connect(function (err) {
             //     if (err) throw err;
