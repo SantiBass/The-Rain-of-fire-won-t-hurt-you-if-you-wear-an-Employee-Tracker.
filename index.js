@@ -31,7 +31,7 @@ function init() {
             inquirer.prompt({
 
                 
-                // add table HERE for departments BY NAME AND ID
+                
                 type: 'list',
                 name: 'ChoosingOptions',
                 message: "Here are all departments \n  Press enter to go to the main menu plase",
@@ -44,6 +44,7 @@ function init() {
             })
 
         } else if (selectedAnswer.ChoosingOptions === "View all roles") {
+            // add table HERE for departments BY NAME AND ID
             db.connect(function (err) {
                 if (err) throw err;
                 db.query('select * from roles', function (err, result) {
@@ -88,6 +89,8 @@ function init() {
                 };
             });
         } else if (selectedAnswer.ChoosingOptions === "Add department") {
+
+            // ======================= adding department ====================
             inquirer.prompt([
                 {
                     type: 'input',
@@ -95,11 +98,6 @@ function init() {
                     message: "Give a name to the department you want to add",
 
                 },
-                // {
-                //     type: 'input',
-                //     name: 'idOfDepartment',
-                //     message: "Give an ID to the department you want to add",
-                // },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
@@ -156,6 +154,22 @@ function init() {
                     choices: ['Go to the main menu']
                 }
             ]).then(function (selectedAnswer) {
+                db.connect(function (err) {
+                    if (err) throw err;
+                    db.query('INSERT INTO roles SET ?',{
+                        
+                       title : selectedAnswer.tilteOfRole,
+                       salary: selectedAnswer.salaryOfRole,
+                       department_id: selectedAnswer.idOfDepartment
+                    
+                    }, 
+                    function (err, result) {
+                        if (err) throw err;
+                        console.log("\n");
+                        // console.table(result);
+                        // 
+                    });
+                })
                 if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
                     init();
 
@@ -179,22 +193,15 @@ function init() {
                 },
                 {
                     type: 'input',
-                    name: 'employeeId',
-                    message: "What is the ID of the employee you want to add?",
+                    name: 'employeeIdRole',
+                    message: "What is the role ID of the employee you want to add?",
 
                 },
-                {
-                    type: 'input',
-                    name: 'employeeRole',
-                    message: "What is the role of the employee you want to add?",
-
-                },
-
-                {
-                    type: 'input',
-                    name: 'nameOfDepartment',
-                    message: "What is the department in which the employee is being added?",
-                },
+                // {
+                //     type: 'input',
+                //     name: 'nameOfDepartment',
+                //     message: "What is the department in which the employee is being added?",
+                // },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
@@ -204,6 +211,22 @@ function init() {
             ])
                 // add role here enter the name, salary, and department for the role and that role is added to the database
                 .then(function (selectedAnswer) {
+                    db.connect(function (err) {
+                        if (err) throw err;
+                        db.query('INSERT INTO employee SET ?',{
+                            
+                           first_name : selectedAnswer.employeeName,
+                           last_name : selectedAnswer.employeeLastName,
+                           role_id : selectedAnswer.employeeIdRole,
+                          
+                        }, 
+                        function (err, result) {
+                            if (err) throw err;
+                            console.log("\n");
+                            // console.table(result);
+                            // 
+                        });
+                    })
                     if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
                         init();
 
