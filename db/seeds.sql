@@ -29,4 +29,3 @@ UPDATE employee
 SET   manager_id = 1
 WHERE id IN (2,3);
 
-id
