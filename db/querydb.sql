@@ -13,4 +13,8 @@ SELECT employee.id, employee.first_name, employee.last_name, employee.role_id AS
 FROM employee
 JOIN roles ON  roles.id = role_id;
 
-SELECT
+-- SELECT manager.id 
+-- FROM managers
+-- JOIN employee ON employee.first_name = first_name;
+-- JOIN ON employee.last_name = last_name;
+-- JOIN ON employee.manager_id = manager_id;

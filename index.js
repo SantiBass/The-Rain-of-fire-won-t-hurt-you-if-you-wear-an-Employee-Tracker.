@@ -16,7 +16,8 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add department', 'Add a role', 'Add an employee', 'Update  Manager', 'Delete', 'Quit']
+        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee',  'Delete a Department','Delete a Role', 'Delete an employee', 'Quit']
+        // 'Add a Manager',
     }).then(function (selectedAnswer) {
         if (selectedAnswer.ChoosingOptions === "View all departments") {
 
@@ -88,7 +89,7 @@ function init() {
                     init();
                 };
             });
-        } else if (selectedAnswer.ChoosingOptions === "Add department") {
+        } else if (selectedAnswer.ChoosingOptions === "Add a department") {
 
             // ======================= adding department ====================
             inquirer.prompt([
@@ -109,7 +110,8 @@ function init() {
                 .then(function (selectedAnswer) {
                     db.connect(function (err) {
                         if (err) throw err;
-                        db.query('INSERT INTO departments SET ?',{department_name: selectedAnswer.nameOfDepartment}, 
+                        db.query('INSERT INTO departments SET ?',{
+                            department_name: selectedAnswer.nameOfDepartment}, 
                         function (err, result) {
                             if (err) throw err;
                             console.log("\n");
@@ -129,6 +131,7 @@ function init() {
             inquirer.prompt([
                 //  ================   adding role =============
 
+               
                 {
                     type: 'input',
                     name: 'tilteOfRole',
@@ -144,7 +147,7 @@ function init() {
                 {
                     type: 'input',
                     name: 'idOfDepartment',
-                    message: "What is the ID of the department in which this role is beig added to?",
+                    message: "What is the ID of the department in which this role is being added to?",
 
                 },
                 {
@@ -157,10 +160,10 @@ function init() {
                 db.connect(function (err) {
                     if (err) throw err;
                     db.query('INSERT INTO roles SET ?',{
-                        
+                        // id: selectedAnswer.id,
                        title : selectedAnswer.tilteOfRole,
                        salary: selectedAnswer.salaryOfRole,
-                       department_id: selectedAnswer.idOfDepartment
+                      department_id: selectedAnswer.idOfDepartment
                     
                     }, 
                     function (err, result) {
@@ -233,62 +236,79 @@ function init() {
 
                     };
                 })
-        } else if (selectedAnswer.ChoosingOptions === "Update  manager") {
+        // } else if (selectedAnswer.ChoosingOptions === "Add a Manager") {
            
-            //===========     update managers ================
+        //     //===========     update managers ================
              
-            inquirer.prompt([
-                {
-                    type: 'input',
-                    name: 'managerName',
-                    message: "What is the name of the manager being updated?",
+        //     inquirer.prompt([
+        //         // {
+        //         //     type: 'input',
+        //         //     name: 'managerName',
+        //         //     message: "What is the name of the manager you want add?",
 
-                },
-                {
-                    type: 'input',
-                    name: 'employeeLastName',
-                    message: "What is the last name of the employee you want to add?",
+        //         // },
+        //         {
+        //             type: 'input',
+        //             name: 'idOfTheManager',
+        //             message: "What is the ID of the manager being updated?",
 
-                },
-                {
-                    type: 'input',
-                    name: 'idOfTheManager',
-                    message: "What is the ID of the manager being updated?",
+        //         },
+        //         {
+        //             type: 'input',
+        //             name: 'title',
+        //             message: "What is the title  you want to add?",
 
-                },
-                {
-                    type: 'input',
-                    name: 'employeeSalary',
-                    message: "What is your salary amountof the manager being updated?",
+        //         },
+        //         {
+        //             type: 'input',
+        //             name: 'employeeSalary',
+        //             message: "What is your salary amountof the manager being updated?",
 
-                },
-                {
-                    type: 'input',
-                    name: 'nameOfDepartment',
-                    message: "What is your the department of the manager being updated?",
-                },
-                {
-                    type: 'list',
-                    name: 'ChoosingOptions',
-                    message: "You updated an employee's role successfuly \n  Press enter to go to the main menu plase",
-                    choices: ['Go to the main menu']
-                }
+        //         },
+        //         {
+        //             type: 'input',
+        //             name: 'nameOfDepartment',
+        //             message: "What is your the department of the manager being updated?",
+        //         },
+        //         {
+        //             type: 'list',
+        //             name: 'ChoosingOptions',
+        //             message: "You updated an employee's role successfuly \n  Press enter to go to the main menu plase",
+        //             choices: ['Go to the main menu']
+        //         }
 
-                // update role here select an employee to update and their new role and this information is updated in the database
-            ]).then(function (selectedAnswer) {
-                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
-                    init();
-                };
-            })
-        } else if (selectedAnswer.ChoosingOptions === "Delete manager") {
+        //         // update role here select an employee to update and their new role and this information is updated in the database
+        //     ]).then(function (selectedAnswer) {
+        //         db.connect(function (err) {
+        //             if (err) throw err;
+        //             db.query('INSERT INTO roles SET ?',{
+                        
+        //                id : selectedAnswer.idOfTheManager,
+        //                title : selectedAnswer.title,
+        //                salary : selectedAnswer.employeeSalary,
+        //                department_id : selectedAnswer.nameOfDepartment,
+                      
+        //             }, 
+        //             function (err, result) {
+        //                 if (err) throw err;
+        //                 console.log("\n");
+        //                 // console.table(result);
+        //                 // 
+        //             });
+        //         if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+        //             init();
+        //         };
+        //     })
+        // });
+        } else if (selectedAnswer.ChoosingOptions === "Delete a Department") {
             //  show table of employees' names
             // ============      deleting roles, departments, employees    ==========
             inquirer.prompt([
                 {
-                    type: 'list',
-                    name: 'deletingOption',
-                    message: "What would you like to delete?",
-                    choices: ['Department', 'role', 'employee']
+                    type: 'input',
+                    name: 'deletingDepartment',
+                    message: "What is the department's ID you whold like to delete?",
+                    // choices: ['Department', 'role', 'employee']
                 },
                 {
                     type: 'list',
@@ -300,34 +320,90 @@ function init() {
             ])
                 // update role here select an employee to update and their new role and this information is updated in the database
                 .then(function (selectedAnswer) {
-                    if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
-                        init();
-                    };
-                })
-        } else if (selectedAnswer.ChoosingOptions === "Delete") {
-            //  show table of employees' names
-            inquirer.prompt([
-                {
-                    type: 'list',
-                    name: 'deletingOption',
-                    message: "What would you like to delete?",
-                    choices: ['Department', 'role', 'employee']
-                },
-                {
-                    type: 'list',
-                    name: 'ChoosingOptions',
-                    message: "Your deletion prosess was successfuly done!\n  Press enter to go to the main menu plase",
-                    choices: ['Go to the main menu']
-                }
-
-            ])
-                // update role here select an employee to update and their new role and this information is updated in the database
-                .then(function (selectedAnswer) {
+                    db.connect(function (err) {
+                if (err) throw err;
+                db.query('DELETE FROM departments WHERE ?',{id: selectedAnswer.deletingDepartment}, 
+                function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    // console.table(result);
+                    // 
+                });
+            })
                     if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
                         init();
                     };
                 })
         } 
+        else if (selectedAnswer.ChoosingOptions === "Delete a Role") {
+            //  show table of employees' names
+            // ============      deleting roles, departments, employees    ==========
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'deletingRole',
+                    message: "What is the role's ID you whold like to delete?",
+                    // choices: ['Department', 'role', 'employee']
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "Your deletion prosess was successfuly done!\n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu']
+                }
+
+            ])
+                // update role here select an employee to update and their new role and this information is updated in the database
+                .then(function (selectedAnswer) {
+                    db.connect(function (err) {
+                if (err) throw err;
+                db.query('DELETE FROM roles WHERE ?',{id: selectedAnswer.deletingRole}, 
+                function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    // console.table(result);
+                    // 
+                });
+            })
+                    if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                        init();
+                    };
+                })
+        }else if (selectedAnswer.ChoosingOptions === "Delete an employee") {
+            //  show table of employees' names
+            // ============      deleting roles, departments, employees    ==========
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'deletingEmployee',
+                    message: "What is the ID of the emoployee whold like to delete?",
+                    // choices: ['Department', 'role', 'employee']
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "Your deletion prosess was successfuly done!\n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu']
+                }
+
+            ])
+                // update role here select an employee to update and their new role and this information is updated in the database
+                .then(function (selectedAnswer) {
+                    db.connect(function (err) {
+                if (err) throw err;
+                db.query('DELETE FROM employee WHERE ?',{id: selectedAnswer.deletingEmployee}, 
+                function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    // console.table(result);
+                    // 
+                });
+            })
+                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                        init();
+                    };
+                })
+        }
         else if (selectedAnswer.ChoosingOptions == "Quit") {
            
             console.log("Press ctrl + C key to exit");

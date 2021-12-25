@@ -24,7 +24,8 @@ VALUES  (100, "Santiago", "Ibarra",10, 100),
         (500, "Klaus", "Mikelsen", 70, 500),
         (600, "Divina", "De la Cuadra", 20, 600),
         (700, "Mia", "Xu", 50, 700);
-
+-- INSERT INTO managers(id, first_name, last_name,managerid)
+--             (110, "Santiago","Ibarra",10)
 UPDATE employee
 SET   manager_id = 1
 WHERE id IN (2,3);
