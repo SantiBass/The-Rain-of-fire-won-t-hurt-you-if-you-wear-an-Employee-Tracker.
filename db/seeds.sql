@@ -17,7 +17,7 @@ VALUES   (10, "Manager", 100000.00,1),
          (60, "Web Designer", 70000.00, 3),
          (70, "Rep",30000.00, 7);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES  (100, "Santiago", "Ibarra",10, null),
+VALUES  (100, "Santiago", "Ibarra",10, 100),
         (200, "Suzanne", "Ryan",30 , 100),
         (300, "Timmothy", "Ryan",60,100 ),
         (400, "Patricia", "Ryan", 40, 100),

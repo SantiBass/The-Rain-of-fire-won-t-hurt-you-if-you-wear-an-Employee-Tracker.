@@ -2,16 +2,26 @@ SELECT * FROM departments;
 SELECT * FROM roles;
 SELECT * FROM employee;
 
--- -- selecting data from from all roles.
---  SELECT  roles.id, roles.title, roles.salary, department_id AS departments_id
+--  --selecting data from from all roles.
+-- SELECT roles.id, roles.title, roles.salary, department_id AS departments_id
 -- FROM roles
 -- JOIN departments  ON  departments.id = department_id;
 
---  --  selecting data from all employees.
+-- --  --  selecting data from all employees.
 
--- SELECT employee.id, employee.first_name, employee.last_name, employee.role_id AS role_id
--- FROM employee
--- JOIN roles ON  roles.id = role_id;
+SELECT employee.id, employee.first_name, employee.last_name, employee.role_id 
+FROM employee
+JOIN roles ON  roles.id = role_id;
+
+
+
+SELECT  employee.first_name, employee.last_name,employee.role_id, roles.department_id, departments.department_name
+FROM  employee
+INNER JOIN  roles ON employee.role_id = roles.id
+INNER JOIN departments on roles.department_id=departments.id;
+
+
+
 
 
 -- UPDATE employee.role_id
