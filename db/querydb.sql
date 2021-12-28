@@ -3,7 +3,7 @@ SELECT * FROM roles;
 SELECT * FROM employee;
 
 --  --selecting data from from all roles.
-SELECT roles.id, roles.title, roles.salary, department_id AS departments_id
+SELECT roles.id AS Role_Id, roles.title AS Title, roles.salary AS Salary, department_id AS Departments_id
 FROM roles
 JOIN departments  ON  departments.id = department_id;
 
