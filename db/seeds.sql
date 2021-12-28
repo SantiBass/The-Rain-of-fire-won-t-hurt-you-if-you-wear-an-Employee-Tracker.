@@ -17,19 +17,11 @@ VALUES   (10, "Manager", 100000.00,1),
          (60, "Web Designer", 70000.00, 3),
          (70, "Rep",30000.00, 7);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES  (100, "Santiago", "Ibarra",10, 100),
+VALUES  (100, "Santiago", "Ibarra",10, NULL),
         (200, "Suzanne", "Ryan",30 , 100),
         (300, "Timmothy", "Ryan",60,100 ),
         (400, "Patricia", "Ryan", 40, 100),
         (500, "Klaus", "Mikelsen", 70, 100),
         (600, "Divina", "De la Cuadra", 20, 100),
         (700, "Mia", "Xu", 50, 100);
--- INSERT INTO managers(id, first_name, last_name,managerid)
---             (110, "Santiago","Ibarra",10)
-UPDATE employee
-SET   manager_id = 100
-WHERE role_id !=10;
--- UPDATE employee
--- SET   manager_id = 100
--- WHERE id IN (200,300,400,500,600,700);
 

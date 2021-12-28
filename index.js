@@ -16,7 +16,7 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all Departments', 'View all roles', 'View all employees', 'View all Managers', 'Add a Department', 'Add a role', 'Add an employee', 'Delete a Department', 'Delete a Role', 'Delete an employee', 'Update an Employee', 'Quit']
+        choices: ['View all Departments', 'View all roles', 'View all employees', 'View all Employees by department','View all Managers', 'Add a Department', 'Add a role', 'Add an employee', 'Delete a Department', 'Delete a Role', 'Delete an employee', 'Update an Employee', 'Quit']
         // 'Add a Manager',
     }).then(function (selectedAnswer) {
         if (selectedAnswer.ChoosingOptions === "View all Departments") {
@@ -86,7 +86,32 @@ function init() {
                     init();
                 };
             });
-        }else if (selectedAnswer.ChoosingOptions === "View all Managers") {
+        }
+        else if (selectedAnswer.ChoosingOptions === "View all Employees by department") {
+            // add table HERE for all employees presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+            db.connect(function (err) {
+                if (err) throw err;
+                db.query('SELECT employee.first_name, employee.last_name, employee.role_id, roles.department_id, departments.department_name FROM employee INNER JOIN roles ON employee.role_id = roles.id INNER JOIN departments ON roles.department_id = departments.id;',function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    console.table(result);
+                });
+            }) 
+            inquirer.prompt({
+
+                type: 'list',
+                name: 'ChoosingOptions',
+                message: "Here are all the employees \n  Press enter to go to the main menu plase",
+                choices: ['Go to the main menu']
+            }).then(function (selectedAnswer) {
+                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                    init();
+                };
+            });
+        }
+        
+        
+        else if (selectedAnswer.ChoosingOptions === "View all Managers") {
             // add table HERE for departments BY NAME AND ID
             db.connect(function (err) {
                 if (err) throw err;
@@ -437,7 +462,7 @@ function init() {
     })
 }
 init();
-// SELECT COUNT(salary) FROM roles;
+// SELECT sum(salary) FROM roles;
 // SELECT * FROM employee WHERE role_id = 10;
             // db.connect(function (err) {
             //     if (err) throw err;
