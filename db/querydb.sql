@@ -1,6 +1,6 @@
 SELECT * FROM departments;
--- SELECT * FROM roles;
--- SELECT * FROM employee;
+SELECT * FROM roles;
+SELECT * FROM employee;
 
 --  --selecting data from from all roles.
 SELECT roles.id, roles.title, roles.salary, department_id AS departments_id
@@ -25,20 +25,26 @@ SELECT   departments.id, departments.department_name,roles.department_id,
 SUM(roles.salary) AS Department_budget
 FROM departments
 INNER JOIN roles ON roles.department_id=departments.id
-group by departments.id; 
+GROUP BY departments.id; 
 
+-- SELECT employee.id, employee.manager_id
+-- FROM employee;
 
+SELECT employee.id, employee.manager_id
+FROM employee
+INNER JOIN roles ON employee.role_id = roles.id;
 
-UPDATE employee.role_id
-SET    manager_id = 100
--- capute the user's input
-WHERE role_id !=10; 
+UPDATE employee 
+SET employee.manager_id = 100, employee.role_id = 2 
+WHERE  employee.id = 100;
 
+-- SET manager_id = 100
+-- -- capute the user's input
+-- WHERE role_id !=10; 
 
-
-UPDATE employee
-SET   manager_id = 100
-WHERE id IN (200,300,400,500,600,700);
+-- UPDATE employee
+-- SET   manager_id = 100
+-- WHERE id IN (200,300,400,500,600,700);
 
 
 -- SELECT employee.id, roles.title 

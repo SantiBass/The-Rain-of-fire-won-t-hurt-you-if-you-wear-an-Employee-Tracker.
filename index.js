@@ -16,7 +16,7 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all Departments', 'View all roles', 'View all employees', 'View all Employees by department','View all Managers', 'Add a Department', 'Add a role', 'Add an employee', 'Delete a Department', 'Delete a Role', 'Delete an employee', 'Update an Employee', 'Quit']
+        choices: ['View all Departments', 'View all roles', 'View all employees', 'View all Employees by department','View all Managers', 'View Budget of each Department', 'Add a Department', 'Add a role', 'Add an employee', 'Update an Employee', 'Update an Employee Manager', 'Delete a Department', 'Delete a Role', 'Delete an employee', 'Quit']
         // 'Add a Manager',
     }).then(function (selectedAnswer) {
         if (selectedAnswer.ChoosingOptions === "View all Departments") {
@@ -116,6 +116,30 @@ function init() {
             db.connect(function (err) {
                 if (err) throw err;
                 db.query('SELECT * FROM employee WHERE role_id = 10', function (err, result) {
+                    if (err) throw err;
+                    console.log("\n");
+                    console.table(result);
+                });
+            })
+
+            inquirer.prompt({
+                // add table HERE for all roles presented with the job title, role id, the department that role belongs to, and the salary for that role
+                type: 'list',
+                name: 'ChoosingOptions',
+                message: "Here are all the Managers \n  Press enter to go to the main menu plase",
+                choices: ['Go to the main menu']
+            }).then(function (selectedAnswer) {
+                if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+
+                    init();
+                };
+            });
+
+        } else if (selectedAnswer.ChoosingOptions === "View Budget of each Department") {
+            // add table HERE for departments BY NAME AND ID
+            db.connect(function (err) {
+                if (err) throw err;
+                db.query('SELECT   departments.id, departments.department_name,roles.department_id, SUM(roles.salary) AS Department_budget FROM departments INNER JOIN roles ON roles.department_id=departments.id GROUP BY departments.id;', function (err, result) {
                     if (err) throw err;
                     console.log("\n");
                     console.table(result);
@@ -294,42 +318,22 @@ function init() {
             //===========     update employeed ================
             // I need employee ID and role_id
             inquirer.prompt([
-                // {
-                //     type: 'input',
-                //     name: 'employeeLastName',
-                //     message: "What is the name of the manager you want add?",
-
-                // },
                 {
                     type: 'input',
                     name: 'idOfTheEmployee',
-                    message: "What is the ID of the employee being updated to Manager?",
-
+                    message: "What is the ID of the employee being updated?",
                 },
                 {
                     type: 'input',
                     name: 'roleId',
                     message: "What is the new role id  of the employee?",
-
                 },
-                // {
-                //     type: 'input',
-                //     name: 'employeeSalary',
-                //     message: "What is your salary amountof the manager being updated?",
-
-                // },
-                // {
-                //     type: 'input',
-                //     name: 'departmentNumber',
-                //     message: "What is your the department of the manager being updated?",
-                // },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
                     message: "You updated an employee's role successfuly \n  Press enter to go to the main menu plase",
                     choices: ['Go to the main menu']
                 }
-
                 // update role here select an employee to update and their new role and this information is updated in the database
             ]).then(function (selectedAnswer) {
                 db.connect(function (err) {
@@ -341,7 +345,7 @@ function init() {
                         function (err, result) {
                             if (err) throw err;
                             console.log("\n");
-                            console.log(selectedAnswer.roleId);
+                            // console.log(selectedAnswer.roleId);
                             // 
                         });
                     if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
@@ -349,7 +353,57 @@ function init() {
                     };
                 })
             });
-        } else if (selectedAnswer.ChoosingOptions === "Delete a Department") {
+        }else if (selectedAnswer.ChoosingOptions === "Update an Employee Manager") {
+
+            //===========     update employee's manager ================
+            // I need employee ID and role_id
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'idOfTheManager',
+                    message: "What is your Manager's ID?",
+                },
+                {
+                    type: 'input',
+                    name: 'employeeRoleId',
+                    message: "What is the employee's role ID?",
+                },
+                {
+                    type: 'input',
+                    name: 'idOfTheEmployee',
+                    message: "What is the employee's ID?",
+                },
+                {
+                    type: 'list',
+                    name: 'ChoosingOptions',
+                    message: "You updated an employee's role successfuly \n  Press enter to go to the main menu plase",
+                    choices: ['Go to the main menu']
+                }
+            ]).then(function (selectedAnswer) {
+                db.connect(function (err) {
+                    if (err) throw err;
+                db.query( 'UPDATE employee SET employee.manager_id = ?, employee.role_id = ? WHERE employee.id = ?;',
+                        // 'UPDATE employee SET role_id = ?, manager_id = null WHERE id = ?', 
+                        [
+                            selectedAnswer.idOfTheManager,
+                            selectedAnswer.employeeRoleId,
+                            selectedAnswer.idOfTheEmployee,
+                    ],
+                        function (err, result) {
+                            if (err) throw err;
+                            console.log("\n");
+                            // console.log(selectedAnswer.roleId);
+                            // 
+                        });
+                    if (selectedAnswer.ChoosingOptions === "Go to the main menu") {
+                        init();
+                    };
+                })
+            });
+        }  
+        
+        
+        else if (selectedAnswer.ChoosingOptions === "Delete a Department") {
             //  show table of employees' names
             // ============      deleting roles, departments, employees    ==========
             inquirer.prompt([
