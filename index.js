@@ -16,10 +16,10 @@ function init() {
         name: "ChoosingOptions",
         message: "===============================================\n  ****  Welcome to the Employee Traker app.  ****\n  ****  What would you like to do today?     **** \n  =============================================== \n",
 
-        choices: ['View all Departments', 'View all roles', 
-        'View all employees', 'View all Employees by department', 
+        choices: ['View all Departments', 'View all Roles', 
+        'View All Employees', 'View all Employees by Department', 
         'View all Managers', 'View Budget of each Department', 
-        'Add a Department', 'Add a role', 'Add an employee', 
+        'Add a Department', 'Add a Role', 'Add an Employee', 
         'Update an Employee Role', 'Update an Employee Manager', 
         'Delete a Department', 'Delete a Role', 
         'Delete an employee', 'Quit']
@@ -47,7 +47,7 @@ function init() {
                 }
             })
 
-        } else if (selectedAnswer.ChoosingOptions === "View all roles") {
+        } else if (selectedAnswer.ChoosingOptions === "View all Roles") {
             db.connect(function (err) {
                 if (err) throw err;
                 db.query('SELECT  roles.title AS Job_title, roles.id AS Role_Id, department_id AS Department_id, roles.salary AS Salary FROM roles JOIN departments  ON  departments.id = department_id;', function (err, result) {
@@ -69,7 +69,7 @@ function init() {
                 };
             });
 
-        } else if (selectedAnswer.ChoosingOptions === "View all employees") {
+        } else if (selectedAnswer.ChoosingOptions === "View All Employees") {
             db.connect(function (err) {
                 if (err) throw err;
                 db.query(' SELECT employee.id AS Employee_id, employee.first_name, employee.last_name, roles.title AS Job_title, employee.role_id, roles.department_id, roles.salary, employee.manager_id FROM employee JOIN roles ON  employee.role_id = roles.id;', 
@@ -91,7 +91,7 @@ function init() {
                 };
             });
         }
-        else if (selectedAnswer.ChoosingOptions === "View all Employees by department") {
+        else if (selectedAnswer.ChoosingOptions === "View all Employees by Department") {
             db.connect(function (err) {
                 if (err) throw err;
                 db.query('SELECT employee.first_name, employee.last_name, employee.role_id, roles.department_id, departments.department_name FROM employee INNER JOIN roles ON employee.role_id = roles.id INNER JOIN departments ON roles.department_id = departments.id;', function (err, result) {
@@ -187,7 +187,7 @@ function init() {
                         init();
                 };
             })
-        } else if (selectedAnswer.ChoosingOptions === "Add a role") { 
+        } else if (selectedAnswer.ChoosingOptions === "Add a Role") { 
             //  ================   adding role =============
             inquirer.prompt([
                 {
@@ -228,7 +228,7 @@ function init() {
                     init();
                 };
             });
-        } else if (selectedAnswer.ChoosingOptions === "Add an employee") {
+        } else if (selectedAnswer.ChoosingOptions === "Add an Employee") {
             //  =============== adding employee ==============
             inquirer.prompt([
                 {
@@ -420,7 +420,7 @@ function init() {
                 {
                     type: 'input',
                     name: 'deletingEmployee',
-                    message: "What is the ID of the emoployee whold like to delete?",
+                    message: "What is the ID of the emoployee you would like to delete?",
                 },
                 {
                     type: 'list',

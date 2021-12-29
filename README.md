@@ -30,7 +30,7 @@
 
 
 ## Usage
-#### In this simple application the enter, up, and down arrow keys are used for navigation. Some data entry is needed to update, add, or delete information in the tables. For example, first name, manager ID, role ID can be use to update , add, or delete information in  the tables. To run the application type in and press enter after this command lines: SOURCE schema.sql, SOURCE seeds.sql, SOURCE query.sql, and node index.js 
+#### In this simple application the enter, up, and down arrow keys are used for navigation. Some data entry is needed to update, add, or delete information in the tables. For example, first name, manager ID, role ID can be use to update , add, or delete information in  the tables. To run the application type in and press enter after this command lines: SOURCE schema.sql, SOURCE seeds.sql, SOURCE query.sql, and node index.js. Also (CTRL + C) allows the user exit the application at any time.
 
 ## Credits
 #### TA's and AskBSC. They were a great contributors to this project.
