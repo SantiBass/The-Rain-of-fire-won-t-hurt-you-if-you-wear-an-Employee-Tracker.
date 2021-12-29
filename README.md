@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description.
-### The purpose this application is to manage the departments, roles, and employees in my company the an business owner  can organize and plan the business. The user will be able to select actions from a list.  You can see the application in action by clicking this link: [Employee Tracker.]
+### The purpose this application is to manage the departments, roles, and employees in my company so the business owner  can organize and plan the business. The user will be able to select actions from a list and make changes accordingly.  You can see the application in action by clicking this link: [Employee Tracker.]
 
 
 
@@ -13,12 +13,14 @@
 * [Installation](#installation)
 * [License](#license)
 * [Usage](#usage)
+* [Credits](#credits)
 * [Test](#test)
 * [GitHub](#github)
+* [Screenshots](#screenshots)
 * [Questions](#questions)
 
 ## Installation
-#### To run this application via command line [Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)  have to be installed 
+#### To run this application first run "npm install sql" to install all dependencies. Second, 
 ## License
 #### This project is licensed by:  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -27,7 +29,10 @@
 
 
 ## Usage
+#### In this simple application the enter, up, and down arrow keys are used for navigation. Some data entry is needed to update, add, or delete information in the tables. For example, first name, manager ID, role ID can be use to update , add, or delete information in  the tables.
 
+## Credits
+#### TA's and AskBSC. They were a great contributors to this project.
 
 ## Test
 
@@ -37,11 +42,11 @@
 
 ### You can visit my GitHub: [SantiBass](https://github.com/SantiBass)
 
+
+
 ## Questions
-
-
-
-### If you have any questions, please send me an email @ sibarraryan@gmail.com. 
+### If you have any questions, please send me an email @ sibarraryan@gmail.com.
+### Also, you can watch this application  in action by using this link:
 
 
 
