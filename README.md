@@ -41,7 +41,7 @@
 
 ### You can visit my GitHub: [SantiBass](https://github.com/SantiBass)
 
-## Screeshots
+## Screenshots
 #### Here is an screenshots of the aplication.
 ![Screen Shot 2021-12-29 at 12 16 02 PM](https://user-images.githubusercontent.com/90415841/147700072-344d6f7e-215b-41fe-90ea-934bcb718be4.png)
 ## Questions
