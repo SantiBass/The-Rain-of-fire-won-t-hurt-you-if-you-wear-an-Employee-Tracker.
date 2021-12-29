@@ -20,7 +20,7 @@ function init() {
         'View all employees', 'View all Employees by department', 
         'View all Managers', 'View Budget of each Department', 
         'Add a Department', 'Add a role', 'Add an employee', 
-        'Update an Employee', 'Update an Employee Manager', 
+        'Update an Employee Role', 'Update an Employee Manager', 
         'Delete a Department', 'Delete a Role', 
         'Delete an employee', 'Quit']
      
@@ -72,7 +72,7 @@ function init() {
         } else if (selectedAnswer.ChoosingOptions === "View all employees") {
             db.connect(function (err) {
                 if (err) throw err;
-                db.query(' SELECT employee.id AS Employee_id, employee.first_name, employee.last_name, roles.title AS Job_title,roles.department_id, roles.salary, employee.manager_id FROM employee JOIN roles ON  employee.role_id = roles.id;', 
+                db.query(' SELECT employee.id AS Employee_id, employee.first_name, employee.last_name, roles.title AS Job_title, employee.role_id, roles.department_id, roles.salary, employee.manager_id FROM employee JOIN roles ON  employee.role_id = roles.id;', 
                 function (err, result) {
                     if (err) throw err;
                     console.log("\n");
@@ -275,19 +275,18 @@ function init() {
                         init();
                     };
                 })
-        } else if (selectedAnswer.ChoosingOptions === "Update an Employee") {
+        } else if (selectedAnswer.ChoosingOptions === "Update an Employee Role") {
             //===========     update employeed ================
-            // I need employee ID and role_id
             inquirer.prompt([
                 {
                     type: 'input',
-                    name: 'idOfTheEmployee',
-                    message: "What is the ID of the employee being updated?",
+                    name: 'newRoleIdOfEmployee',
+                    message: "What is the new role ID of the employee being updated?",
                 },
                 {
                     type: 'input',
-                    name: 'roleId',
-                    message: "What is the new role id  of the employee?",
+                    name: 'employeeId',
+                    message: "What is the  id  of the employee?",
                 },
                 {
                     type: 'list',
@@ -298,9 +297,10 @@ function init() {
             ]).then(function (selectedAnswer) {
                 db.connect(function (err) {
                     if (err) throw err;
-                    db.query('UPDATE employee SET role_id = ?,  WHERE id = ?', [
-                        selectedAnswer.roleId,
-                        selectedAnswer.idOfTheEmployee,
+                    db.query('UPDATE employee SET employee.role_id = ?  WHERE  employee.id = ?;', [
+                    selectedAnswer.newRoleIdOfEmployee,
+                    selectedAnswer.employeeId,
+                        
                     ],
                         function (err, result) {
                             if (err) throw err;
@@ -318,18 +318,18 @@ function init() {
                 {
                     type: 'input',
                     name: 'idOfTheManager',
-                    message: "What is your Manager's ID?",
-                },
-                {
-                    type: 'input',
-                    name: 'employeeRoleId',
-                    message: "What is the employee's role ID?",
+                    message: "What is your new Manager's ID?",
                 },
                 {
                     type: 'input',
                     name: 'idOfTheEmployee',
                     message: "What is the employee's ID?",
                 },
+                // {
+                //     type: 'input',
+                //     name: 'employeeRoleId',
+                //     message: "What is the employee's role ID?",
+                // },
                 {
                     type: 'list',
                     name: 'ChoosingOptions',
@@ -339,11 +339,11 @@ function init() {
             ]).then(function (selectedAnswer) {
                 db.connect(function (err) {
                     if (err) throw err;
-                    db.query('UPDATE employee SET employee.manager_id = ?, employee.role_id = ? WHERE employee.id = ?;',
+                    db.query('UPDATE employee SET employee.manager_id = ? WHERE employee.id = ?;',
                         [
                             selectedAnswer.idOfTheManager,
-                            selectedAnswer.employeeRoleId,
                             selectedAnswer.idOfTheEmployee,
+                            // selectedAnswer.employeeRoleId,
                         ],
                         function (err, result) {
                             if (err) throw err;
@@ -358,7 +358,6 @@ function init() {
             });
         }
         else if (selectedAnswer.ChoosingOptions === "Delete a Department") {
-            //  show table of employees' names
             // ============      deleting roles, departments, employees    ==========
             inquirer.prompt([
                 {
