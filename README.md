@@ -5,7 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description.
-###
+### The purpose this application is to manage the departments, roles, and employees in my company the an business owner  can organize and plan the business. The user will be able to select actions from a list.  You can see the application in action by clicking this link: [Employee Tracker.]
+
 
 
 
