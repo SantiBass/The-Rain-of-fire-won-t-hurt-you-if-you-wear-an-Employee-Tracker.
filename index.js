@@ -374,7 +374,8 @@ function init() {
             ]).then(function (selectedAnswer) {
                     db.connect(function (err) {
                         if (err) throw err;
-                        db.query('DELETE FROM departments WHERE ?', { id: selectedAnswer.deletingDepartment },
+                        db.query(`DELETE FROM departments WHERE departments.id = ${selectedAnswer.deletingDepartment}`, 
+                       
                             function (err, result) {
                                 if (err) throw err;
                                 console.log("\n");                               
