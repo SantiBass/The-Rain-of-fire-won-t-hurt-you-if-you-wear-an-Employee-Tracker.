@@ -34,3 +34,5 @@ INNER JOIN roles ON employee.role_id = roles.id;
 UPDATE employee SET employee.role_id = 2 WHERE  employee.id = 300;
 
 SELECT employee.id, employee.first_name, employee.last_name, employee.role_id FROM employee WHERE employee.role_id = 1;
+-- delete department
+DELETE FROM departments WHERE departments.id = 13;

@@ -363,8 +363,7 @@ function init() {
                 {
                     type: 'input',
                     name: 'deletingDepartment',
-                    message: "What is the department's ID you whold like to delete?",
-                    // choices: ['Department', 'role', 'employee']
+                    message: "What is the department's ID you whould like to delete?",
                 },
                 {
                     type: 'list',

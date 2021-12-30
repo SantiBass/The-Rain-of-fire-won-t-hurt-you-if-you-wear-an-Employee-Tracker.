@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description.
-### The purpose this application is to manage the departments, roles, and employees in my company so the business owner  can organize and plan the business. The user will be able to select actions from a list and make changes accordingly.  You can see the application in action by clicking this link: [Employee Tracker.]
+### The purpose this application is to manage departments, roles, and employees in a company so the business owner can organize and plan the business. The user will be able to select actions from a list and make changes accordingly. You can see the application in action by clicking this link: [Employee Tracker.]
 
 
 
@@ -30,10 +30,10 @@
 
 
 ## Usage
-#### In this simple application the enter, up, and down arrow keys are used for navigation. Some data entry is needed to update, add, or delete information in the tables. For example, first name, manager ID, role ID can be use to update , add, or delete information in  the tables. To run the application type in and press enter after this command lines: SOURCE schema.sql, SOURCE seeds.sql, SOURCE query.sql, and node index.js 
+#### In this simple application, the enter, up, and down arrow keys are used for navigation. Some data entry is needed to update, add, or delete information in the tables. For example, fields such as first name, manager ID, and role ID can be used to update, add, or delete information in the tables. To run the application, type in and press enter after these command lines: SOURCE schema.sql, SOURCE seeds.sql, SOURCE query.sql, and node index.js. 
 
 ## Credits
-#### TA's and AskBSC. They were a great contributors to this project.
+#### TA's and AskBSC. They provided valuable contributions to this project.
 
 ## Test
 
@@ -53,7 +53,7 @@
 ## Question
 ### If you have any questions, please send me an email @ sibarraryan@gmail.com. 
 ### You can visit my GitHub: [SantiBass.](https://github.com/SantiBass)
-### Also, you can watch this application  in action by using this link:
+### Also, you can watch this application in action by using this link:
 
 
 

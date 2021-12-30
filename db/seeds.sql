@@ -11,7 +11,7 @@ VALUES (1, "Marketing"),
 INSERT INTO roles (id, title, salary, department_id)
 VALUES   (1, "Manager", 100000.00,1),
          (2, "Intern", 30000.00,2),
-         (3, "Ingeneer", 80000.00,3),
+         (3, "Engineer", 80000.00,3),
          (4, "Supervisor", 60000.00, 4),
          (5, "Sales Assossiate", 40000.00, 5),
          (6, "Web Designer", 70000.00, 3),
